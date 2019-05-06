@@ -61,7 +61,11 @@ class ItemList extends StatelessWidget {
     return new ListView.builder(
       itemCount: list==null ? 0 : list.length,
       itemBuilder: (context, i){
-        return new Text(list[i]['item_name']);
+        return new ListTile(
+          title: new Text(list[i]['item_name']),
+          leading: new Icon(Icons.widgets),
+          subtitle: new Text("Stok: ${list[i]['stock']}"),
+        );
       },
     );
   }
