@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'detail.dart';
+import 'adddata.dart';
 
 void main() => runApp(MyApp());
 
@@ -44,7 +45,11 @@ Future<List> getData() async{
         title: Text(widget.title),),
         floatingActionButton: new FloatingActionButton(
           child: new Icon(Icons.add),
-          onPressed: (){},
+          onPressed: ()=>Navigator.of(context).push(
+            new MaterialPageRoute(
+              builder: (BuildContext context)=>new Adddata(),
+            )
+          ),
         ),
         body: new FutureBuilder<List>(
           future: getData(),
