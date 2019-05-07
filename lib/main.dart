@@ -42,6 +42,10 @@ Future<List> getData() async{
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),),
+        floatingActionButton: new FloatingActionButton(
+          child: new Icon(Icons.add),
+          onPressed: (){},
+        ),
         body: new FutureBuilder<List>(
           future: getData(),
           builder: (context, snapshot){
