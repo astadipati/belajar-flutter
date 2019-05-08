@@ -29,10 +29,14 @@ class _DetailState extends State<Detail> {
         color: Colors.red,
         onPressed: (){
           deleteData();
-          new MaterialPageRoute(
-            builder: (BuildContext context)=>new MyApp(),
+          Navigator.push(context, MaterialPageRoute(
+            builder: (BuildContext context)=>MyApp(),
+          ));
+          // Navigator.pop(context);
+          // new MaterialPageRoute(
+          //   builder: (BuildContext context)=>new MyApp(),
             // Navigator.pop(_context);
-          );
+          // );
         },
       ),
       new RaisedButton(
@@ -41,7 +45,7 @@ class _DetailState extends State<Detail> {
       )
     ],
   );
-  showDialog(context: context, builder: (_)=>alert);
+  showDialog(context: context, builder: (BuildContext context)=>alert);
 // end cara lain
 
     // AlertDialog alertDialog = new AlertDialog(
