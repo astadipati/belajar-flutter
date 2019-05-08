@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'editdata.dart';
 import 'package:http/http.dart' as http;
 import 'main.dart';
+import 'package:flutter/cupertino.dart';
 
 class Detail extends StatefulWidget {
   List list;
@@ -12,6 +13,13 @@ class Detail extends StatefulWidget {
 }
 
 class _DetailState extends State<Detail> {
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    // {_showDialog();}
+  }
+
   void deleteData(){
  var url = "http://192.168.2.203/api_flutter/deletedata.php";
  
@@ -19,33 +27,64 @@ class _DetailState extends State<Detail> {
       'id' : widget.list[widget.index]['id'],
   });
   }
+
   void confirm(){
 // coba cara lain
-  var alert = new AlertDialog(
-    title: new Text("Hapus Data '${widget.list[widget.index]['item_name']}'"),
-    actions: <Widget>[
-      new RaisedButton(
-        child: new Text("Hapus"),
-        color: Colors.red,
-        onPressed: (){
-          deleteData();
-          Navigator.push(context, MaterialPageRoute(
-            builder: (BuildContext context)=>MyApp(),
-          ));
-          // Navigator.pop(context);
-          // new MaterialPageRoute(
-          //   builder: (BuildContext context)=>new MyApp(),
-            // Navigator.pop(_context);
-          // );
-        },
-      ),
-      new RaisedButton(
-        child: new Text("Cancel", style: TextStyle(color: Colors.black),),
-        onPressed: ()=>Navigator.pop(context),
-      )
-    ],
+  showDialog(
+    context: context,
+    builder: (BuildContext context) => new CupertinoAlertDialog(
+      title: new Text("hapus"),
+      content: new Text("datane"),
+      actions: <Widget>[
+        CupertinoDialogAction(isDefaultAction: true, child: new RaisedButton(
+          child: new Text("hapus"),
+          color: Colors.red,
+          onPressed: (){
+            deleteData();
+            Navigator.of(context).push(
+              new MaterialPageRoute(
+                builder: (BuildContext context)=>MyApp(),
+              ),
+            );
+          },
+        ),),
+      ],
+      
+    ),
   );
-  showDialog(context: context, builder: (BuildContext context)=>alert);
+  // var alert = new AlertDialog(
+  //   title: new Text("Hapus Data '${widget.list[widget.index]['item_name']}'"),
+  //   actions: <Widget>[
+  //     new RaisedButton(
+  //       child: new Text("Hapus"),
+  //       color: Colors.red,
+  //       onPressed: (){
+  //         deleteData();
+  //         // new MaterialPageRoute(
+  //         //   builder: (BuildContext context)=> new MyApp(),
+  //         // );
+  //         // Navigator.of(context,rootNavigator:true).pop('dialog');
+  //         Navigator.push(context, MaterialPageRoute(
+  //           builder: (BuildContext context)=>MyApp(),
+  //         ));
+
+  //         // Navigator.pop(context);
+  //         // new MaterialPageRoute( 
+  //         //   builder: (BuildContext context)=>new MyApp(),
+  //           // Navigator.pop(_context);
+  //         // );
+  //       },
+  //     ),
+  //     new RaisedButton(
+  //       child: new Text("Cancel", style: TextStyle(color: Colors.black),),
+  //       onPressed: ()=>Navigator.pop(context),
+  //     )
+  //   ],
+  // );
+  // showDialog(context: context, builder: (BuildContext context)=>alert);
+  _showDialog() async{
+    
+  }
 // end cara lain
 
     // AlertDialog alertDialog = new AlertDialog(
@@ -101,6 +140,7 @@ class _DetailState extends State<Detail> {
                   new RaisedButton(
                     child: new Text("Hapus"),
                     color: Colors.red,
+                    // onPressed: ()=>confirm(),
                     onPressed: ()=>confirm(),
                   )
                 ],)

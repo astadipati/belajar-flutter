@@ -28,9 +28,17 @@ class MyHomePage extends StatefulWidget {
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
+
+  
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
+@override
+void initState() { 
+  super.initState();
+  MyApp();
+}
 
 Future<List> getData() async{
   final response = await http.get("http://192.168.2.203/api_flutter/getdata.php");
